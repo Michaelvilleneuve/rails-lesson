@@ -11,10 +11,9 @@
 #
 
 class Comment < ApplicationRecord
+  include Writable
+
   belongs_to :post
   belongs_to :user
 
-  def written_by?(a_user)
-    user == a_user
-  end
 end
