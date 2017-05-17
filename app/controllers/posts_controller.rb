@@ -11,14 +11,14 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = @user.posts.new
+    @post = @current_user.posts.new
   end
 
   def edit
   end
 
   def create
-    @post = @user.posts.new(post_params)
+    @post = @current_user.posts.new(post_params)
 
     if @post.save
       redirect_to @post, notice: 'Article crééé.'
@@ -42,9 +42,9 @@ class PostsController < ApplicationController
 
   private
     def set_post
-      @post = @user.posts.find_by!(slug: params[:id])
+      @post = @current_user.posts.find_by!(slug: params[:id])
     rescue
-      @post = @user.posts.find_by(id: params[:id])
+      @post = @current_user.posts.find_by!(id: params[:id])
     end
 
     def post_params

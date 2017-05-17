@@ -13,10 +13,10 @@
 		  <hr>
 		</div>
 		<div class="col-xs-12">
-		  <%= link_to 'Voir', post, class: 'btn btn-info' %>
-		  <% if session[:user_id] && post.written_by?(User.find(session[:user_id])) %>
+		  <%= link_to 'Voir', post, class: 'btn btn-success' %>
+		  <% if post.written_by?(@current_user) %>
 		    <%= link_to 'Modifier', edit_post_path(post), class: 'btn btn-info'  %></td>
-		    <%= link_to 'Supprimer', post, method: :delete, class: 'btn btn-info', data: { confirm: 'Are you sure?' } %>
+		    <%= link_to 'Supprimer', post, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
 		  <% end %>
 		</div>
 		<div class="clearfix"></div>

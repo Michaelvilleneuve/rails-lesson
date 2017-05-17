@@ -3,7 +3,7 @@
 		<h1 style="margin:0">Les articles</h1>
 	</div>
 	<div class="col-xs-6">
-		<%= link_to 'Régider un nouvel article', new_post_path, class: 'btn btn-info pull-right' if session[:user_id] %>
+		<%= link_to 'Régider un nouvel article', new_post_path, class: 'btn btn-info pull-right' unless @current_user.nil? %>
 	</div>
 </div>
 <div class="clearfix"></div>

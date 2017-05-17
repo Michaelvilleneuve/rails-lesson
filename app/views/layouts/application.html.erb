@@ -31,12 +31,13 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li>
-            <% if session[:user_id] %>
-              <%= link_to "Se déconnecter", session_path, method: :delete %>
+            <% if @current_user %>
+              <li><%= link_to "Se déconnecter", session_path, method: :delete %></li>
+              <li><%= link_to "Mon compte", @current_user %></li>
+              <li><%= link_to "Rédiger un article", new_post_path %></li>
             <% else %>
-              <%= link_to "Se connecter", new_session_path %></li><li>
-              <%= link_to "Créer un compte", new_user_path %>
+              <li><%= link_to "Se connecter", new_session_path %></li>
+              <li><%= link_to "Créer un compte", new_user_path %></li>
             <% end %>
           </li>
         </ul>

@@ -1,7 +1,7 @@
 <%= form_with(model: post, local: true) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h5><%= pluralize(post.errors.count, "erreur") %> a empêché l'enregistrement :</h5>
 
       <ul>
       <% post.errors.full_messages.each do |message| %>
@@ -12,19 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :titre %>
     <%= form.text_field :title, id: :post_title, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= image_tag @post.image.url(:thumb) %>
-    <%= form.label :image %>
+    <hr>
+    <% if @post.persisted? %>
+      <%= image_tag @post.image.url(:thumb) %>
+    <% else %>
+      <%= form.label :image %>
+    <% end %>
+    <br>
+    <br>
     <%= form.file_field :image %>
+    <hr>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content, id: :post_content, class: 'form-control' %>
+    <%= form.label :contenu %>
+    <%= form.text_area :content, id: :post_content, class: 'form-control', style: 'min-height: 100px' %>
   </div>
 
   <div class="actions">
