@@ -23,7 +23,8 @@ class Post < ApplicationRecord
   has_attached_file :image, styles: { medium: "1600x900>", thumb: "600x400>" }
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
-  validates :title, :user, :image, presence: true
+  validates :content, length: { in: 20..900 }
+  validates :title, :user, presence: true
 
   before_save :generate_slug
 

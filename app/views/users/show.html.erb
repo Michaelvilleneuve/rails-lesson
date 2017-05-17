@@ -4,4 +4,6 @@
 <% if @user.posts.any? %>
 	<h3><%= pluralize(@user.posts.count, :article) %> de <%= @user %></h3>
 	<%= render partial: @user.posts %>
+<% else %>
+	<em><%= @user %> n'a écrit aucun article pour le moment.</em>
 <% end %>
