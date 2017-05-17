@@ -3,11 +3,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.paginate(page: params[:page])
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find_by(slug: params[:id])
   end
 
   def new
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     @post = @user.posts.new(post_params)
 
     if @post.save
-      redirect_to @post, notice: 'Article créé.'
+      redirect_to @post, notice: 'Article crééé.'
     else
       render :new
     end
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
 
   private
     def set_post
-      @post = @user.posts.find(params[:id])
+      @post = @user.posts.find_by(slug: params[:id])
     end
 
     def post_params

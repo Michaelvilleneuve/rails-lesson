@@ -13,7 +13,6 @@
 		  <hr>
 		</div>
 		<div class="col-xs-12">
-			<hr>
 		  <%= link_to 'Voir', post, class: 'btn btn-info' %>
 		  <% if session[:user_id] && post.written_by?(User.find(session[:user_id])) %>
 		    <%= link_to 'Modifier', edit_post_path(post), class: 'btn btn-info'  %></td>

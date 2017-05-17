@@ -17,3 +17,12 @@
  .btn-info {
  	margin-bottom: 2px;
  }
+.flex-center {
+	display:flex; 
+	justify-content: center; 
+	align-items: center;
+}
+.article-title {
+	height: 300px;
+	background-size: cover;
+}

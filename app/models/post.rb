@@ -20,9 +20,20 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
 
-  has_attached_file :image, styles: { medium: "600x400>", thumb: "100x100>" }
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  has_attached_file :image, styles: { medium: "1600x900>", thumb: "600x400>" }
 
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
   validates :title, :user, presence: true
 
+  before_save :generate_slug
+
+  def to_param
+    slug
+  end
+
+  private
+
+  def generate_slug
+    self.slug = title.parameterize
+  end
 end
