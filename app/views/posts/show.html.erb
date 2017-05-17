@@ -1,0 +1,22 @@
+<h1><%= @post.title %></h1>
+<%= link_to "Auteur : #{@post.user}", @post.user %>
+<p> Date de publication : <%= @post.created_at.strftime('Le %y/%m/%d') %> </p>
+<%= link_to "Modifier cet article", edit_post_path(@post.id) if session[:user_id] %>
+<hr>
+<p class="text-center"><%= image_tag @post.image.url, style: 'width: 100%; max-width: 200px' %></p>
+<p>
+  <%= @post.content %>
+</p>
+<hr />
+<ul class="list-group" id="comment-list">
+  <%= render partial: @post.comments %>
+</ul>
+<hr>
+<% if session[:user_id] %>
+	<strong>Rajouter un commentaire</strong>
+	<%= form_for [@post, Comment.new], remote: true do |f| %>
+		<%= f.text_field :title, class: 'form-control', placeholder: 'Titre' %>
+		<br>
+	    <button class="btn btn-info" type="submit">Créer le commentaire</button>
+	<% end %>
+<% end %>

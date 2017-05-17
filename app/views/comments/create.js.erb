@@ -1,0 +1,5 @@
+<% if @comment.persisted? %>
+	$('#comment-list').append('<%= j render @comment %>');
+<% else %>
+	alert('Impossible d\'enregistrer le commentaire.');
+<% end %>

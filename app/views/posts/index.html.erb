@@ -1,0 +1,5 @@
+<h1>Les articles</h1>
+
+<%= render partial: @posts %>
+
+<%= link_to 'Régider un nouvel article', new_post_path, class: 'btn btn-info' if session[:user_id] %>

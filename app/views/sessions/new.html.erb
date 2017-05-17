@@ -1,0 +1,7 @@
+<%= form_tag(session_path, method: :post) do |f| %>
+	<input type="email" name="email" placeholder="email" class="form-control"/>
+	<br>
+	<input type="password" name="password" placeholder="Mot de passe" class="form-control" />
+	<br>
+	<button type="submit" class="btn btn-info">Envoyer</button>
+<% end %>

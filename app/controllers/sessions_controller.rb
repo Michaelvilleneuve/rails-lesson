@@ -1,0 +1,16 @@
+class SessionsController < ApplicationController
+  def new
+  end
+
+  def create
+    @user = User.find_by(email: params[:email])
+    session[:user_id] = @user.can_log_in?(params[:password]) ? @user.id : false
+    redirect_to (session[:user_id] ? posts_path : new_session_path)
+  rescue
+    redirect_to new_session_path
+  end
+
+  def destroy
+    session.delete(:user_id) and redirect_to root_path 
+  end
+end

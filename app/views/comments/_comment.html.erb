@@ -1,0 +1,6 @@
+<li class="list-group-item" id="comment-<%= comment.id %>">
+	<%= comment.user %><br>
+	<%= comment.created_at.strftime('Le %y/%m/%d') %><br><hr>
+	<%= comment.title %>
+	<%= link_to "Supprimer", post_comment_path(post_id: comment.post.id, id: comment.id), method: :delete, class: 'pull-right', remote: true if session[:user_id] && comment.written_by?(User.find(session[:user_id])) %>
+</li>
