@@ -2,10 +2,10 @@
 	<h1><%= @post.title %></h1>
 </section>
 
-<%= link_to "Auteur : #{@post.user}", @post.user %>
-<p> Date de publication : <%= @post.created_at.strftime('Le %y/%m/%d') %> </p>
-<%= link_to "Modifier cet article", edit_post_path(@post.id) if session[:user_id] && @post.written_by?(User.find(session[:user_id])) %>
-<hr>
+<div class="metas">
+	<p> Publié le <%= @post.created_at.strftime('Le %y/%m/%d') %> par <%= link_to @post.user, @post.user %></p>
+	<%= link_to "Modifier cet article", edit_post_path(@post.id) if session[:user_id] && @post.written_by?(User.find(session[:user_id])) %>
+</div>
 <p>
   <%= @post.content %>
 </p>
@@ -16,10 +16,15 @@
 </ul>
 <hr>
 <% if session[:user_id] %>
+
 	<h4>Rajouter un commentaire</h4>
+
 	<%= form_for [@post, Comment.new], remote: true do |f| %>
 		<%= f.text_area :title, class: 'form-control', placeholder: 'Contenu' %>
 		<br>
 	    <button class="btn btn-info" type="submit">Créer le commentaire</button>
 	<% end %>
+
+<% else %>
+	<em>Connectez-vous pour pouvoir rajouter un commentaire.</em>
 <% end %>

@@ -42,7 +42,9 @@ class PostsController < ApplicationController
 
   private
     def set_post
-      @post = @user.posts.find_by(slug: params[:id])
+      @post = @user.posts.find_by!(slug: params[:id])
+    rescue
+      @post = @user.posts.find_by(id: params[:id])
     end
 
     def post_params
